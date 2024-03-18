@@ -227,6 +227,9 @@ function _init {
 function _compile {
     typeset -gx MCCI_CI_ARCH="$1"
 
+    # Change to the library directory
+    cd "$OPTLIBRARY" || _fatal "Failed to change directory to $OPTLIBRARY"
+
     # Compile Arduino sketches in the root directory
     for sketch_file in ./*.ino; do
         if [ -f "$sketch_file" ]; then
@@ -234,6 +237,9 @@ function _compile {
             ci_"$1" "$sketch_file"
         fi
     done
+
+    # Change back to the original directory
+    cd - > /dev/null || _fatal "Failed to change back to the original directory"
 }
 
 # function _compile {
