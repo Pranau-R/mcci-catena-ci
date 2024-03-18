@@ -225,16 +225,28 @@ function _init {
 }
 
 function _compile {
-    typeset -a MCCI_EXAMPLES_ALL
     typeset -gx MCCI_CI_ARCH="$1"
 
-    # shellcheck disable=2207
-    MCCI_EXAMPLES_ALL=($(_list_examples "$OPTLIBRARY"))
-
-    _boxverbose "Examples:" "${MCCI_EXAMPLES_ALL[@]}"
-
-    ci_"$1" "${MCCI_EXAMPLES_ALL[@]}"
+    # Compile Arduino sketches in the root directory
+    for sketch_file in ./*.ino; do
+        if [ -f "$sketch_file" ]; then
+            echo "Compiling $sketch_file for architecture $MCCI_CI_ARCH"
+            ci_"$1" "$sketch_file"
+        fi
+    done
 }
+
+# function _compile {
+#     typeset -a MCCI_EXAMPLES_ALL
+#     typeset -gx MCCI_CI_ARCH="$1"
+
+#     # shellcheck disable=2207
+#     MCCI_EXAMPLES_ALL=($(_list_examples "$OPTLIBRARY"))
+
+#     _boxverbose "Examples:" "${MCCI_EXAMPLES_ALL[@]}"
+
+#     ci_"$1" "${MCCI_EXAMPLES_ALL[@]}"
+# }
 
 function _main {
     _init "$@"
