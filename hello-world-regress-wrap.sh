@@ -240,7 +240,7 @@ function _main {
     _init "$@"
 
     _setup_path
-    _setup_hello-world-arduino libraries/hello-world-arduino
+    _setup_hello_world_arduino libraries/hello-world-arduino
     _setup_arduino_cli
     for iArch in ${MCCI_ARDUINO_FQCNS[$OPTARCH]} ; do
         _setup_board_package "$iArch"
