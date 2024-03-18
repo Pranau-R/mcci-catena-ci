@@ -141,6 +141,11 @@ function _setup_board_package {
     fi
 }
 
+#### set up the hello-world-arduino: $1 is path
+function _setup_hello-world-arduino {
+    _assert_setup_env
+    }
+
 #### set up the lmic: $1 is path
 function _setup_lmic {
     _assert_setup_env
