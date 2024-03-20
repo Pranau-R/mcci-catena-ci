@@ -146,6 +146,11 @@ function _setup_hello-world-arduino {
     _assert_setup_env
     }
 
+#### set up the downlink-test: $1 is path
+function _setup_downlink-test {
+    _assert_setup_env
+    }
+
 #### set up the lmic: $1 is path
 function _setup_lmic {
     _assert_setup_env
